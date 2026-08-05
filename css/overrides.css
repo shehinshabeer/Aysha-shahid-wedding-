@@ -1,0 +1,29 @@
+/* Overrides: adjust vertical spacing for the "weds" badge to avoid overlap with the countdown
+   - Moves the splash and details "weds" badges slightly upward
+   - Adds a small responsive rule for short viewports to further guard against overlap
+   This file intentionally uses !important to ensure these adjustments override the main stylesheet.
+*/
+
+/* Splash screen: pull the badge closer to the groom name */
+.splash-weds-wrap {
+  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 330px) !important; /* reduced from +342px */
+}
+
+/* Details header: pull the badge closer to the groom name */
+.dh-weds-wrap {
+  top: 144px !important; /* reduced from 153px */
+}
+
+/* Responsive safeguard: on short viewports, shrink text and nudge badge further up */
+@media (max-height: 720px) {
+  .splash-groom, .splash-bride {
+    font-size: clamp(28px, 9.5vw, 36px) !important;
+  }
+  .splash-weds-wrap {
+    top: calc(max(env(safe-area-inset-top, 0px), 54px) + 310px) !important; /* nudge further up */
+  }
+  /* keep a little extra spacing for the countdown */
+  .countdown {
+    top: calc(max(env(safe-area-inset-top, 0px), 54px) + 507px) !important;
+  }
+}
