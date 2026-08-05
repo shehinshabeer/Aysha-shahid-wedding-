@@ -252,7 +252,7 @@ img { display: block; }
 /* ── "weds" badge ────────────────────────── */
 /*  Figma: y≈381, Comforter on pink bar        */
 .splash-weds-wrap {
-  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 342px); /* Figma y=381 + 15 */
+  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 320px); /* Figma y=381 + 15 */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
