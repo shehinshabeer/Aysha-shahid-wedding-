@@ -2,13 +2,13 @@
 
 /* ══════════════════════════════════════════
    WEDDING WEBSITE — JAVASCRIPT
-   Mohammed Abdul Razak & Henna Shireen
-   Nikah: Wednesday, 20 May 2026, 5:30 PM IST
+   Shahid N S & Aysha Abdul Samad
+   Nikah: Sunday, 11 October 2026, 11:30 AM IST
 ══════════════════════════════════════════ */
 
 // ── Wedding date target ────────────────────
-// Updated to match the site: Sunday, 11 October 2026
-const WEDDING_DATE = new Date('2026-10-11T12:00:00Z');
+// 11:30 AM IST converted to UTC is 06:00:00Z
+const WEDDING_DATE = new Date('2026-10-11T06:00:00Z');
 
 // ── DOM refs ───────────────────────────────
 const splash        = document.getElementById('splash');
@@ -172,8 +172,6 @@ setInterval(updateCountdown, 1000);
     }, 250);
 
     // ── Start music SYNCHRONOUSLY during user gesture ──────────
-    // bgMusic.play() must be called within the touchend/mouseup
-    // event handler — any setTimeout breaks the autoplay policy.
     if (bgMusic && !musicStarted) {
       bgMusic.volume = 0;
       bgMusic.play().then(() => {
@@ -186,7 +184,7 @@ setInterval(updateCountdown, 1000);
       });
     }
 
-    // Page reveal can safely be deferred (it's UI only)
+    // Page reveal can safely be deferred
     setTimeout(revealDetails, 700);
   }
 
@@ -254,8 +252,6 @@ function toggleMusic() {
   if (!bgMusic) return;
 
   if (!musicStarted) {
-    // Audio hasn't started yet (swipe not done / autoplay blocked)
-    // This click IS a user gesture so play() will work here
     bgMusic.volume = 0;
     bgMusic.play().then(() => {
       musicStarted = true;
@@ -266,7 +262,6 @@ function toggleMusic() {
     return;
   }
 
-  // Toggle mute / unmute (don't pause — keep buffer position)
   musicMuted    = !musicMuted;
   bgMusic.muted = musicMuted;
   updateMusicUI();
@@ -294,7 +289,7 @@ if (musicPillDet) musicPillDet.addEventListener('click', toggleMusic);
 ═══════════════════════════════════════════ */
 async function downloadWeddingCard(btn) {
   const CARD_URL = 'assets/wedding-card.png';
-  const FILENAME = 'Mohammed-Henna-WeddingCard.png';
+  const FILENAME = 'Shahid-Aysha-WeddingCard.png';
 
   const origText = btn.textContent;
   btn.textContent = 'Downloading…';
@@ -306,15 +301,15 @@ async function downloadWeddingCard(btn) {
     const blob = await res.blob();
     const file = new File([blob], FILENAME, { type: blob.type || 'image/png' });
 
-    // Mobile: native share sheet (WhatsApp status, etc.)
+    // Mobile: native share sheet
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       await navigator.share({
         files: [file],
-        title: 'Mohammed & Henna — Wedding Card',
+        title: 'Shahid & Aysha — Wedding Card',
         text:  'You\'re invited! ✨'
       });
     } else {
-      // Desktop / fallback: trigger download
+      // Desktop / fallback
       const url = URL.createObjectURL(blob);
       const a   = document.createElement('a');
       a.href     = url;
@@ -323,7 +318,7 @@ async function downloadWeddingCard(btn) {
       setTimeout(() => URL.revokeObjectURL(url), 60000);
     }
   } catch {
-    // Silently fail — card image may not be uploaded yet
+    // Silently fail
   } finally {
     btn.textContent = origText;
     btn.disabled    = false;
@@ -345,7 +340,7 @@ function vibrate(pattern) {
 swipeThumb.addEventListener('touchstart', () => vibrate(10), { passive: true });
 
 /* ════════════════════════════════════════════
-   LUCIDE ICONS — initialise all data-lucide
+   LUCIDE ICONS
 ═══════════════════════════════════════════ */
 if (typeof lucide !== 'undefined') lucide.createIcons();
 
@@ -359,12 +354,10 @@ if (typeof lucide !== 'undefined') lucide.createIcons();
     if (!header) return;
     header.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
-      // Close all
       items.forEach(i => {
         i.classList.remove('open');
         i.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
       });
-      // Open the clicked one if it was closed
       if (!isOpen) {
         item.classList.add('open');
         header.setAttribute('aria-expanded', 'true');
@@ -372,3 +365,21 @@ if (typeof lucide !== 'undefined') lucide.createIcons();
     });
   });
 })();
+
+/* ════════════════════════════════════════════
+   PAUSE MUSIC WHEN LEAVING THE SITE
+═══════════════════════════════════════════ */
+document.addEventListener("visibilitychange", () => {
+  if (!bgMusic) return;
+
+  if (document.hidden) {
+    // The user switched tabs or minimized the app
+    bgMusic.pause();
+  } else {
+    // The user came back to the invitation
+    // Only resume if the music was already playing and not manually muted
+    if (musicStarted && !musicMuted) {
+      bgMusic.play().catch(() => {});
+    }
+  }
+});
