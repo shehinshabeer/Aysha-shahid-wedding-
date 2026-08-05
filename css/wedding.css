@@ -218,7 +218,7 @@ img { display: block; }
 /* ── Invite text ─────────────────────────── */
 /*  Figma: y=268, Poppins Regular 12px         */
 .splash-invite {
-  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 180px); /* Figma y=268 + 15 */
+  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 130px); /* Figma y=268 + 15 */
   left: 50%;
   transform: translateX(-50%);
   width: min(298px, calc(100% - 32px));
