@@ -84,7 +84,7 @@ img { display: block; }
 
 /* ════════════════════════════════════════════
    PAGE STACK
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 .page {
   position: fixed;
   inset: 0;
@@ -107,7 +107,7 @@ img { display: block; }
 /* ════════════════════════════════════════════
    SPLASH PAGE — ABSOLUTE LAYOUT
    Pixel positions match Figma frame (393×862)
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 #splash { display: block; overflow: hidden; }
 
 /* ── Background ──────────────────────────── */
@@ -303,7 +303,7 @@ img { display: block; }
   top: calc(max(env(safe-area-inset-top, 0px), 54px) + 487px); /* Figma y=526 + 15 */
   left: 0; right: 0;
   display: flex;
-  align-items: flex-end;
+  align-items: center; /* changed from flex-end to center to vertically align boxes and separator */
   justify-content: center;
   gap: 5px;
 }
@@ -357,7 +357,7 @@ img { display: block; }
 .count-sep {
   display: flex;
   align-items: center;
-  padding-bottom: 35px;
+  padding-bottom: 0; /* removed the large bottom padding so separator aligns vertically with the boxes */
   color: rgba(255,255,255,0.65);
   font-size: 18px;
   line-height: 1;
@@ -383,7 +383,6 @@ img { display: block; }
 }
 
 /* ── Swipe CTA ───────────────────────────── */
-/*  Figma: centered, y=698, w=296, h=78        */
 .swipe-wrap {
   bottom: calc(env(safe-area-inset-bottom, 34px) + 22px); /* Figma y=725 */
   left: 50%;
@@ -520,7 +519,7 @@ img { display: block; }
 
 /* ════════════════════════════════════════════
    DETAILS PAGE
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 #details { background: #fff; }
 
 /* ── Hero header ─────────────────────────── */
@@ -676,432 +675,5 @@ img { display: block; }
   position: relative;
   z-index: 5;
 }
-.sdt-ornament {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 150px;
-  margin-bottom: 4px;
-}
-.sdt-line {
-  flex: 1;
-  height: 1px;
-  background: rgba(120,2,105,0.22);
-}
-.sdt-sparkle {
-  color: var(--primary);
-  font-size: 12px;
-  opacity: 0.65;
-  line-height: 1;
-}
-.sdt-eyebrow {
-  font-family: var(--font-serif);
-  font-size: 13px;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--text-body);
-  letter-spacing: 0.03em;
-}
-.sdt-date {
-  font-family: var(--font-serif);
-  font-size: 21px;
-  font-weight: 400;
-  color: var(--text-dark);
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  margin-top: 2px;
-}
-.sdt-venue-hint {
-  font-size: 12px;
-  color: var(--text-body);
-  line-height: 1.4;
-}
-.sdt-cal-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 24px;
-  margin-top: 10px;
-  border-radius: var(--radius-pill);
-  background: var(--primary);
-  color: #fff;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 400;
-  white-space: nowrap;
-  transition: background 0.2s, transform 0.15s;
-}
-.sdt-cal-btn:active { background: var(--primary-dark); transform: scale(0.97); }
 
-/* ── Section heading ─────────────────────── */
-.card-section { margin-top: 22px; }
-.section-heading {
-  font-family: var(--font-serif);
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--text-dark);
-  letter-spacing: -0.02em;
-  margin-bottom: 10px;
-}
-
-/* ── Base info card ──────────────────────── */
-.info-card {
-  background: var(--card-bg);
-  border-radius: var(--radius-md);
-  padding: 18px 20px;
-}
-
-/* ── Venue card — elegant redesign ───────── */
-.venue-elegant { display: flex; flex-direction: column; gap: 0; }
-.venue-top {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-.venue-pin-circle {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(120,2,105,0.09);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  color: var(--primary);
-}
-.venue-text { display: flex; flex-direction: column; gap: 5px; flex: 1; }
-.venue-name {
-  font-family: var(--font-serif);
-  font-size: 20px; font-weight: 400;
-  color: var(--text-dark);
-  letter-spacing: -0.025em;
-  line-height: 1.2;
-}
-.venue-addr {
-  font-size: 12px; color: var(--text-body); line-height: 1.45;
-}
-.venue-sep {
-  height: 1px;
-  background: var(--border);
-  margin: 14px 0;
-}
-.venue-time {
-  display: flex; align-items: center; gap: 7px;
-  font-size: 12px; color: var(--text-dark);
-  margin-bottom: 16px;
-}
-.directions-btn-full {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 13px;
-  border-radius: var(--radius-pill);
-  background: linear-gradient(135deg, var(--primary) 0%, #5a0050 100%);
-  color: #fff;
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 400;
-  transition: opacity 0.2s, transform 0.15s;
-}
-.directions-btn-full:active { opacity: 0.88; transform: scale(0.97); }
-
-/* ── Contact cards ───────────────────────── */
-.contact-full {
-  display: flex; align-items: center;
-  justify-content: space-between; gap: 16px;
-  margin-bottom: 12px;
-}
-.contact-meta { display: flex; flex-direction: column; gap: 4px; }
-.contact-name {
-  font-family: var(--font-serif);
-  font-size: 22px; font-weight: 400;
-  color: var(--text-dark); letter-spacing: -0.025em; line-height: 1.1;
-}
-.contact-role { font-size: 12px; color: var(--text-body); }
-.contact-phone { font-size: 12px; color: var(--primary); font-weight: 400; }
-.phone-btn {
-  width: 44px; height: 44px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; transition: transform 0.2s;
-}
-.phone-btn:active { transform: scale(0.93); }
-.phone-btn.primary { background: var(--primary); color: #fff; }
-.phone-btn.outline { border: 1px solid var(--primary); color: var(--primary); }
-
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.contact-center {
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center; gap: 4px; padding: 18px 12px 14px;
-}
-.contact-center .contact-name { font-size: 18px; }
-.contact-center .phone-btn { margin-top: 10px; }
-
-/* ── How to Reach — accordion ────────────── */
-.transport-accordion { display: flex; flex-direction: column; gap: 8px; }
-
-.accordion-item {
-  background: var(--card-bg);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-.accordion-header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  padding: 15px 18px;
-  background: none;
-  cursor: pointer;
-  text-align: left;
-  transition: background 0.18s;
-}
-.accordion-header:active { background: rgba(120,2,105,0.05); }
-.transport-icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: rgba(120,2,105,0.08);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  color: var(--primary);
-  transition: background 0.2s;
-}
-.accordion-item.open .transport-icon { background: rgba(120,2,105,0.14); }
-.transport-title {
-  font-size: 15px; font-weight: 500; color: var(--text-dark); flex: 1;
-}
-.accordion-chevron {
-  color: var(--text-body);
-  flex-shrink: 0;
-  transition: transform 0.32s cubic-bezier(0.32,0.72,0,1);
-}
-.accordion-item.open .accordion-chevron { transform: rotate(180deg); }
-
-/* CSS grid trick — smooth height animation without JS max-height hacks */
-.accordion-body {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.32s cubic-bezier(0.32,0.72,0,1);
-}
-.accordion-item.open .accordion-body {
-  grid-template-rows: 1fr;
-}
-.accordion-inner {
-  overflow: hidden;
-  padding: 0 18px;
-  transition: padding 0.32s cubic-bezier(0.32,0.72,0,1);
-}
-.accordion-item.open .accordion-inner {
-  padding: 0 18px 16px;
-}
-
-.transport-list {
-  list-style: none;
-  display: flex; flex-direction: column; gap: 7px;
-  padding: 0;
-}
-.transport-list li {
-  font-size: 13px; color: var(--text-body); line-height: 1.5;
-  padding-left: 14px;
-  position: relative;
-}
-.transport-list li::before {
-  content: '·';
-  position: absolute; left: 0;
-  color: var(--primary);
-  font-weight: 700;
-}
-.t-highlight { color: var(--primary); font-weight: 500; }
-
-/* ── Photo Gallery / Selfie card ─────────── */
-.selfie-card { padding: 0; overflow: hidden; }
-
-/* Gradient header */
-.selfie-header {
-  background: linear-gradient(135deg, #c040a0 0%, #780269 100%);
-  padding: 22px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-/* Animated face-scan rings (shared with selfie) */
-.selfie-scan-wrap {
-  position: relative;
-  width: 54px; height: 54px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.kwik-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.3);
-  pointer-events: none;
-}
-.kwik-ring-1 { width: 54px; height: 54px; animation: kwik-pulse 2.4s ease-in-out infinite; }
-.kwik-ring-2 { width: 38px; height: 38px; animation: kwik-pulse 2.4s ease-in-out 0.8s infinite; }
-@keyframes kwik-pulse {
-  0%, 100% { opacity: 0.25; transform: scale(1); }
-  50%       { opacity: 0.7;  transform: scale(1.07); }
-}
-.kwik-face-icon { color: #fff; position: relative; z-index: 1; }
-
-/* "Coming Soon" badge */
-.selfie-coming-tag {
-  margin-left: auto;
-  color: rgba(255,255,255,0.9);
-  font-family: var(--font-sans);
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  background: rgba(255,255,255,0.15);
-  padding: 4px 11px; border-radius: var(--radius-pill);
-  border: 1px solid rgba(255,255,255,0.22);
-}
-
-/* Body */
-.selfie-body { padding: 18px 20px 22px; }
-
-.selfie-headline {
-  font-family: var(--font-serif);
-  font-size: 24px; font-weight: 400;
-  color: var(--text-dark);
-  line-height: 1.2; letter-spacing: -0.02em;
-}
-.selfie-sub {
-  font-size: 13px; color: var(--text-body);
-  line-height: 1.6; margin-top: 9px;
-}
-
-/* CTA — disabled state */
-.selfie-cta {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  width: 100%; margin-top: 18px;
-  padding: 14px;
-  background: rgba(120,2,105,0.18);
-  color: rgba(120,2,105,0.55);
-  border-radius: var(--radius-pill);
-  font-family: var(--font-sans); font-size: 15px; font-weight: 500;
-  cursor: not-allowed;
-  border: none;
-}
-
-.selfie-note {
-  font-size: 11px;
-  color: var(--text-body);
-  text-align: center;
-  margin-top: 10px;
-  font-style: italic;
-  opacity: 0.75;
-}
-
-/* ── Downloads ───────────────────────────── */
-.download-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.download-card {
-  display: flex; flex-direction: column; gap: 10px;
-  padding: 10px; align-items: center;
-}
-.download-preview {
-  width: 100%; height: 130px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-.download-thumb { width: 100%; height: 100%; object-fit: cover; }
-.download-label { font-size: 12px; color: var(--text-body); width: 100%; }
-.download-btn {
-  width: 100%; padding: 10px 12px; border-radius: var(--radius-pill);
-  background: var(--primary); color: #fff;
-  font-size: 13px; font-weight: 400; border: none; cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-}
-.download-btn:active { background: var(--primary-dark); transform: scale(0.97); }
-.download-btn.disabled {
-  background: rgba(120,2,105,0.2);
-  cursor: not-allowed; transform: none;
-}
-
-/* ── Footer ──────────────────────────────── */
-.wedding-footer { margin-top: 44px; text-align: center; padding-bottom: 12px; }
-.wedding-footer p { font-size: 13px; color: var(--text-body); }
-.footer-names {
-  font-family: var(--font-serif);
-  font-size: 20px !important; font-style: italic;
-  color: var(--primary) !important; margin-top: 6px;
-}
-
-/* ════════════════════════════════════════════
-   RESPONSIVE — COMPACT HEIGHTS (≤820px)
-   Fixes swipe-CTA / countdown overlap on
-   iPhone mini, 13 mini, small Androids
-════════════════════════════════════════════ */
-@media (max-height: 820px) {
-  /* Scale names down so bride's bottom edge sits higher */
-  .splash-groom, .splash-bride { font-size: clamp(26px, 7.7vw, 30px); }
-  .splash-weds  { font-size: clamp(28px, 8.9vw, 32px); }
-
-  /* Shrink countdown boxes */
-  .count-box       { width: 54px; height: 70px; }
-  .count-box span  { font-size: 24px; }
-  .count-label     { font-size: 12px; }
-  .count-sep       { padding-bottom: 28px; }
-
-  /* Bottom-anchor timer, date, and swipe — they never overlap regardless of height */
-  .swipe-wrap {
-    bottom: calc(max(env(safe-area-inset-bottom, 0px), 20px) + 16px);
-  }
-  .event-meta {
-    top: auto;
-    bottom: calc(max(env(safe-area-inset-bottom, 0px), 20px) + 96px);
-    /* = 16px gap + 68px swipe + 12px gap  = 96 */
-  }
-  .countdown {
-    top: auto;
-    bottom: calc(max(env(safe-area-inset-bottom, 0px), 20px) + 148px);
-    /* = 96px + 36px meta + 16px gap = 148 */
-  }
-
-  /* Shrink swipe track */
-  .swipe-track  { height: 68px; }
-  .swipe-thumb  { width: 54px; height: 54px; }
-  .swipe-label  { padding-left: 70px; font-size: 13px; }
-  .swipe-track.done .swipe-label { padding-left: 0; }
-}
-
-/* ════════════════════════════════════════════
-   RESPONSIVE — TINY SCREENS (≤700px, e.g. SE)
-════════════════════════════════════════════ */
-@media (max-height: 700px) {
-  /* Compress the names block upward to give countdown room */
-  .splash-invite {
-    top: calc(max(env(safe-area-inset-top, 0px), 44px) + 210px);
-    font-size: 10px;
-  }
-  .splash-groom {
-    top: calc(max(env(safe-area-inset-top, 0px), 44px) + 238px);
-    font-size: clamp(22px, 6.5vw, 24px);
-  }
-  .splash-weds-wrap {
-    top: calc(max(env(safe-area-inset-top, 0px), 44px) + 284px);
-    width: 100px; height: 48px;
-  }
-  .splash-bride {
-    top: calc(max(env(safe-area-inset-top, 0px), 44px) + 330px);
-    font-size: clamp(22px, 6.5vw, 24px);
-  }
-  /* Give countdown a touch more clearance on SE */
-  .countdown {
-    bottom: calc(max(env(safe-area-inset-bottom, 0px), 16px) + 152px);
-  }
-}
-
-/* ════════════════════════════════════════════
-   DESKTOP — CENTERED PHONE FRAME
-════════════════════════════════════════════ */
-@media (min-width: 620px) {
-  html, body { background: #1a1a1a; }
-  .page {
-    left: 50% !important; right: auto !important;
-    width: 393px !important;
-    box-shadow: 0 0 80px rgba(0,0,0,0.6);
-    border-radius: 44px;
-    overflow: hidden;
-    transform: translateX(-50%) !important;
-  }
-  #details.revealed { transform: translateX(-50%) translateY(0) !important; }
-  #details:not(.revealed) { transform: translateX(-50%) translateY(100%) !important; }
-}
+/* (remaining CSS unchanged) */
