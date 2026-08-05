@@ -233,7 +233,7 @@ img { display: block; }
 /* ── Groom name ──────────────────────────── */
 /*  Figma: y=314, Astonia Regular ~40px        */
 .splash-groom {
-  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 235px); /* Figma y=314 + 15 */
+  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 255px); /* Figma y=314 + 15 */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
