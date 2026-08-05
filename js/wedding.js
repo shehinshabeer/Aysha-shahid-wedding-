@@ -7,7 +7,8 @@
 ══════════════════════════════════════════ */
 
 // ── Wedding date target ────────────────────
-const WEDDING_DATE = new Date('2026-05-20T17:30:00+05:30');
+// Updated to match the site: Sunday, 11 October 2026
+const WEDDING_DATE = new Date('2026-10-11T12:00:00Z');
 
 // ── DOM refs ───────────────────────────────
 const splash        = document.getElementById('splash');
@@ -31,7 +32,7 @@ let musicMuted   = false;  // is it currently muted?
    play/pause on the very first touch so that
    by the time the swipe completes, the audio
    context is already unlocked.
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 (function unlockAudioOnFirstTouch() {
   if (!bgMusic) return;
   function unlock() {
@@ -50,7 +51,7 @@ let musicMuted   = false;  // is it currently muted?
 
 /* ════════════════════════════════════════════
    COUNTDOWN TIMER
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 const cdDays  = document.getElementById('cd-days');
 const cdHours = document.getElementById('cd-hours');
 const cdMins  = document.getElementById('cd-mins');
@@ -96,7 +97,7 @@ setInterval(updateCountdown, 1000);
 
 /* ════════════════════════════════════════════
    SWIPE-TO-ATTEND
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 (function initSwipe() {
   let isDragging = false;
   let startX     = 0;
@@ -222,7 +223,7 @@ setInterval(updateCountdown, 1000);
 
 /* ════════════════════════════════════════════
    PAGE TRANSITION — REVEAL DETAILS
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 function revealDetails() {
   details.classList.add('revealed');
   details.removeAttribute('aria-hidden');
@@ -234,7 +235,7 @@ function revealDetails() {
 
 /* ════════════════════════════════════════════
    BACKGROUND MUSIC
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 function fadeVolume(from, to, durationMs) {
   const steps    = 40;
   const interval = durationMs / steps;
@@ -290,7 +291,7 @@ if (musicPillDet) musicPillDet.addEventListener('click', toggleMusic);
 
 /* ════════════════════════════════════════════
    DOWNLOAD CARD BUTTON
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 async function downloadWeddingCard(btn) {
   const CARD_URL = 'assets/wedding-card.png';
   const FILENAME = 'Mohammed-Henna-WeddingCard.png';
@@ -336,7 +337,7 @@ document.querySelectorAll('.download-btn:not(.disabled)').forEach(btn => {
 
 /* ════════════════════════════════════════════
    HAPTIC FEEDBACK (PWA / Safari)
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 function vibrate(pattern) {
   if ('vibrate' in navigator) navigator.vibrate(pattern);
 }
@@ -345,12 +346,12 @@ swipeThumb.addEventListener('touchstart', () => vibrate(10), { passive: true });
 
 /* ════════════════════════════════════════════
    LUCIDE ICONS — initialise all data-lucide
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 if (typeof lucide !== 'undefined') lucide.createIcons();
 
 /* ════════════════════════════════════════════
    TRANSPORT ACCORDION
-════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 (function initAccordion() {
   const items = document.querySelectorAll('.accordion-item');
   items.forEach(item => {
