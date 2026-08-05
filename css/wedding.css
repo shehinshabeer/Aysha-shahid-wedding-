@@ -184,7 +184,7 @@ img { display: block; }
   50%      { opacity: 0.55; }
 }
 
-/* ── Bismillah ───────────────────────────── */
+/* ── Bismillah ────────────────��──────────── */
 /*  Figma: y=80, w=104, h=27                   */
 .bismillah {
   top: calc(max(env(safe-area-inset-top, 0px), 54px) + 41px); /* Figma y=80 + 15 breathing */
@@ -677,3 +677,66 @@ img { display: block; }
 }
 
 /* (remaining CSS unchanged) */
+
+/* ===== Fix mobile viewport & scrolling ===== */
+
+html, body {
+  /* avoid locking the viewport and allow natural scroll on mobile */
+  min-height: 100dvh;
+  height: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  background: #e8b4df;
+}
+
+/* Let the page flow instead of forcing fixed stacking that can clip on mobile */
+.page {
+  position: relative; /* was fixed */
+  width: 100%;
+  min-height: 100dvh;
+}
+
+/* ===== Avoid swipe thumb overlapping countdown ===== */
+
+/* give the countdown a little breathing room from the bottom CTA */
+.countdown {
+  margin-bottom: 110px; /* creates space so the swipe CTA doesn't overlap the first box */
+  position: relative;
+  z-index: 4;
+}
+
+/* keep the swipe CTA centered and above the sheet but not overlapping boxes */
+.swipe-wrap {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(env(safe-area-inset-bottom, 24px) + 12px); /* slightly raised */
+  width: min(296px, calc(100% - 48px));
+  z-index: 6;
+}
+
+/* make the thumb a bit smaller on narrow screens and move it inwards */
+.swipe-thumb {
+  left: 10px;
+  width: 56px;
+  height: 56px;
+}
+
+/* ===== Responsive tweaks for small devices ===== */
+@media (max-width: 420px) {
+  .count-box {
+    width: 52px;
+    height: 72px;
+    border-radius: 6px;
+  }
+  .count-box span { font-size: 24px; }
+  .swipe-track { height: 68px; }
+  .swipe-thumb {
+    width: 52px;
+    height: 52px;
+    left: 8px;
+  }
+  .swipe-wrap { width: min(260px, calc(100% - 40px)); }
+}
