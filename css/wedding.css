@@ -203,7 +203,7 @@ img { display: block; }
 /* ── Malayalam title logo ────────────────── */
 /*  Figma: y=119, w=224, h=116                 */
 .splash-title-logo {
-  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 50px); /* Figma y=119 + 15 */
+  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 70px); /* Figma y=119 + 15 */
   left: 50%;
   transform: translateX(-50%);
   width: 224px;
@@ -218,7 +218,7 @@ img { display: block; }
 /* ── Invite text ─────────────────────────── */
 /*  Figma: y=268, Poppins Regular 12px         */
 .splash-invite {
-  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 150px); /* Figma y=268 + 15 */
+  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 170px); /* Figma y=268 + 15 */
   left: 50%;
   transform: translateX(-50%);
   width: min(298px, calc(100% - 32px));
