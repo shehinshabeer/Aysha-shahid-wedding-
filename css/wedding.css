@@ -583,7 +583,7 @@ img { display: block; }
 .dh-weds-wrap {
   position: absolute;
   left: 50%;
-  top: 100px;
+  top: 120px;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
