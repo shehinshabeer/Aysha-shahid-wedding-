@@ -187,7 +187,7 @@ img { display: block; }
 /* ── Bismillah ───────────────────────────── */
 /*  Figma: y=80, w=104, h=27                   */
 .bismillah {
-  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 41px); /* Figma y=80 + 15 breathing */
+  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 31px); /* Figma y=80 + 15 breathing */
   left: 50%;
   transform: translateX(-50%);
   width: 104px;
