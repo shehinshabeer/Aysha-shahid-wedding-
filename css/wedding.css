@@ -218,7 +218,7 @@ img { display: block; }
 /* ── Invite text ─────────────────────────── */
 /*  Figma: y=268, Poppins Regular 12px         */
 .splash-invite {
-  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 130px); /* Figma y=268 + 15 */
+  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 140px); /* Figma y=268 + 15 */
   left: 50%;
   transform: translateX(-50%);
   width: min(298px, calc(100% - 32px));
@@ -233,7 +233,7 @@ img { display: block; }
 /* ── Groom name ──────────────────────────── */
 /*  Figma: y=314, Astonia Regular ~40px        */
 .splash-groom {
-  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 255px); /* Figma y=314 + 15 */
+  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 235px); /* Figma y=314 + 15 */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
