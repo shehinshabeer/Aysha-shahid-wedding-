@@ -172,13 +172,14 @@ setInterval(updateCountdown, 1000);
     }, 250);
 
     // ── Start music SYNCHRONOUSLY during user gesture ──────────
+    // (play() must be called now, in this gesture, for Safari to allow it —
+    // but we keep it silent and fade it in once the details page appears)
     if (bgMusic && !musicStarted) {
       bgMusic.volume = 0;
       bgMusic.play().then(() => {
         musicStarted = true;
         musicMuted   = false;
         updateMusicUI();
-        fadeVolume(0, 0.55, 2000);
       }).catch(() => {
         // Autoplay blocked — user can tap the music pill to start
       });
@@ -186,7 +187,6 @@ setInterval(updateCountdown, 1000);
 
     // Page reveal can safely be deferred
     setTimeout(revealDetails, 700);
-  }
 
   // ── Touch events ───────────────────────────
   swipeThumb.addEventListener('touchstart', e => {
@@ -229,6 +229,10 @@ function revealDetails() {
   splash.classList.add('exit');
   setTimeout(() => { splash.style.visibility = 'hidden'; }, 900);
 
+  // Fade the music in now that the details page is actually visible
+  if (bgMusic && musicStarted && !musicMuted) {
+    fadeVolume(0, 0.55, 1500);
+  }
 }
 
 /* ════════════════════════════════════════════
