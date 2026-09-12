@@ -157,6 +157,21 @@ setInterval(updateCountdown, 1000);
   }
 
   function completeSwipe() {
+    // ── Start music FIRST, synchronously, as close to the user
+    //    gesture as possible (browsers are strictest about this
+    //    right at the top of the gesture's event handler) ──────
+    if (bgMusic && !musicStarted) {
+      bgMusic.volume = 0;
+      bgMusic.play().then(() => {
+        musicStarted = true;
+        musicMuted   = false;
+        updateMusicUI();
+        fadeVolume(0, 0.55, 2000);
+      }).catch(() => {
+        // Autoplay blocked — user can tap the music pill to start
+      });
+    }
+
     getGeometry();
     swipeThumb.style.transition = 'transform 0.3s cubic-bezier(0.32,0.72,0,1)';
     swipeFill.style.transition  = 'width 0.3s ease';
@@ -170,19 +185,6 @@ setInterval(updateCountdown, 1000);
       swipeLabel.textContent   = 'See you there! ✓';
       swipeLabel.style.opacity = '1';
     }, 250);
-
-    // ── Start music SYNCHRONOUSLY during user gesture ──────────
-    if (bgMusic && !musicStarted) {
-      bgMusic.volume = 0;
-      bgMusic.play().then(() => {
-        musicStarted = true;
-        musicMuted   = false;
-        updateMusicUI();
-        fadeVolume(0, 0.55, 2000);
-      }).catch(() => {
-        // Autoplay blocked — user can tap the music pill to start
-      });
-    }
 
     // Page reveal can safely be deferred
     setTimeout(revealDetails, 700);
