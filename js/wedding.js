@@ -26,28 +26,18 @@ let musicStarted = false;  // has audio.play() ever succeeded?
 let musicMuted   = false;  // is it currently muted?
 
 /* ════════════════════════════════════════════
-   AUDIO UNLOCK — iOS Safari requires a play()
-   call during a user gesture before any later
-   play() will succeed. We trigger a silent
-   play/pause on the very first touch so that
-   by the time the swipe completes, the audio
-   context is already unlocked.
+   NOTE ON AUDIO AUTOPLAY:
+   We intentionally do NOT use a separate "unlock"
+   play()/pause() trick here. Both real play() calls
+   below (completeSwipe and toggleMusic) already run
+   synchronously inside genuine user-gesture handlers
+   (touchend/click), which is exactly what browser
+   autoplay policies require. A prior version primed
+   playback with an async play()-then-pause() on first
+   touch, but its delayed pause() could race with and
+   silently kill the real playback call — meaning music
+   only started on a second tap. Removed for reliability.
 ═══════════════════════════════════════════ */
-(function unlockAudioOnFirstTouch() {
-  if (!bgMusic) return;
-  function unlock() {
-    bgMusic.muted = true;
-    bgMusic.play().then(() => {
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
-      bgMusic.muted = false;
-    }).catch(() => {});
-    document.removeEventListener('touchstart', unlock, true);
-    document.removeEventListener('mousedown',  unlock, true);
-  }
-  document.addEventListener('touchstart', unlock, { capture: true, once: true, passive: true });
-  document.addEventListener('mousedown',  unlock, { capture: true, once: true });
-})();
 
 /* ════════════════════════════════════════════
    COUNTDOWN TIMER
